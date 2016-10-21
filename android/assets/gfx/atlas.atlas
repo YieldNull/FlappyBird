@@ -20,42 +20,42 @@ bg_night
   index: -1
 bird0
   rotate: false
-  xy: 290, 346
+  xy: 2, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 0
 bird0
   rotate: false
-  xy: 110, 224
+  xy: 52, 2
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 1
 bird0
   rotate: false
-  xy: 228, 296
+  xy: 806, 782
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 2
 bird1
   rotate: false
-  xy: 340, 388
+  xy: 228, 304
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 0
 bird1
   rotate: false
-  xy: 582, 602
+  xy: 110, 160
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 1
 bird1
   rotate: false
-  xy: 658, 652
+  xy: 582, 602
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
@@ -69,21 +69,21 @@ bird2
   index: 0
 bird2
   rotate: false
-  xy: 806, 752
+  xy: 806, 732
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 1
 bird2
   rotate: false
-  xy: 110, 174
+  xy: 228, 254
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: 2
 black
   rotate: false
-  xy: 340, 354
+  xy: 292, 404
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -104,42 +104,42 @@ blink
   index: 1
 blink
   rotate: false
-  xy: 582, 510
+  xy: 326, 404
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: 2
 brand_copyright
   rotate: false
-  xy: 340, 438
+  xy: 292, 438
   size: 126, 14
   orig: 126, 14
   offset: 0, 0
   index: -1
 button_menu
   rotate: false
-  xy: 930, 994
+  xy: 2, 52
   size: 80, 28
   orig: 80, 28
   offset: 0, 0
   index: -1
 button_ok
   rotate: false
-  xy: 690, 702
+  xy: 930, 994
   size: 80, 28
   orig: 80, 28
   offset: 0, 0
   index: -1
 button_pause
   rotate: false
-  xy: 772, 702
+  xy: 84, 52
   size: 26, 28
   orig: 26, 28
   offset: 0, 0
   index: -1
 button_play
   rotate: false
-  xy: 2, 2
+  xy: 110, 282
   size: 116, 70
   orig: 116, 70
   offset: 0, 0
@@ -153,67 +153,60 @@ button_rate
   index: -1
 button_resume
   rotate: false
-  xy: 436, 408
+  xy: 690, 702
   size: 26, 28
   orig: 26, 28
   offset: 0, 0
   index: -1
 button_score
   rotate: false
-  xy: 110, 274
+  xy: 110, 210
   size: 116, 70
   orig: 116, 70
   offset: 0, 0
   index: -1
 button_share
   rotate: false
-  xy: 806, 802
+  xy: 498, 480
   size: 80, 28
   orig: 80, 28
   offset: 0, 0
   index: -1
 font
   rotate: false
-  xy: 546, 464
+  xy: 888, 850
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 48
 font
   rotate: false
-  xy: 888, 850
+  xy: 658, 656
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 50
 font
   rotate: false
-  xy: 632, 606
+  xy: 856, 786
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 51
 font
   rotate: false
-  xy: 708, 656
+  xy: 632, 606
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 52
 font
   rotate: false
-  xy: 930, 898
-  size: 24, 44
-  orig: 24, 44
-  offset: 0, 0
-  index: 53
-font
-  rotate: false
   xy: 980, 948
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
-  index: 54
+  index: 53
 font
   rotate: false
   xy: 1006, 948
@@ -223,210 +216,217 @@ font
   index: 49
 font
   rotate: false
-  xy: 856, 756
+  xy: 582, 510
+  size: 24, 44
+  orig: 24, 44
+  offset: 0, 0
+  index: 54
+font
+  rotate: false
+  xy: 658, 610
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 55
 font
   rotate: false
-  xy: 110, 128
+  xy: 856, 740
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 56
 font
   rotate: false
-  xy: 160, 182
+  xy: 228, 208
   size: 24, 44
   orig: 24, 44
   offset: 0, 0
   index: 57
 land
   rotate: false
-  xy: 2, 396
-  size: 336, 112
-  orig: 336, 112
+  xy: 2, 404
+  size: 288, 104
+  orig: 288, 104
   offset: 0, 0
   index: -1
 medals
   rotate: false
-  xy: 160, 228
+  xy: 110, 114
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: 0
 medals
   rotate: false
-  xy: 278, 300
+  xy: 160, 164
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: 1
-medals
-  rotate: false
-  xy: 390, 392
-  size: 44, 44
-  orig: 44, 44
-  offset: 0, 0
-  index: 2
 medals
   rotate: false
   xy: 582, 556
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
+  index: 2
+medals
+  rotate: false
+  xy: 930, 898
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
   index: 3
 new
   rotate: false
-  xy: 468, 438
+  xy: 420, 438
   size: 32, 14
   orig: 32, 14
   offset: 0, 0
   index: -1
 number_context
   rotate: false
-  xy: 806, 736
+  xy: 888, 834
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 0
-number_context
-  rotate: false
-  xy: 324, 330
-  size: 12, 14
-  orig: 12, 14
-  offset: 0, 0
-  index: 1
 number_context
   rotate: false
   xy: 914, 880
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
+  index: 1
+number_context
+  rotate: false
+  xy: 290, 354
+  size: 12, 14
+  orig: 12, 14
+  offset: 0, 0
   index: 2
 number_context
   rotate: false
-  xy: 374, 372
+  xy: 278, 338
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 3
 number_context
   rotate: false
-  xy: 436, 392
+  xy: 454, 438
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 4
 number_context
   rotate: false
-  xy: 502, 438
+  xy: 128, 98
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 5
 number_context
   rotate: false
-  xy: 246, 280
+  xy: 684, 664
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 6
 number_context
   rotate: false
-  xy: 206, 236
+  xy: 702, 686
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 7
 number_context
   rotate: false
-  xy: 224, 258
+  xy: 608, 518
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 8
 number_context
   rotate: false
-  xy: 888, 812
+  xy: 254, 216
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 9
 number_context
   rotate: false
-  xy: 658, 614
+  xy: 206, 172
   size: 12, 14
   orig: 12, 14
   offset: 0, 0
   index: 10
 number_score
   rotate: false
-  xy: 228, 274
+  xy: 498, 458
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 0
 number_score
   rotate: false
-  xy: 206, 252
+  xy: 580, 488
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 1
 number_score
   rotate: false
-  xy: 888, 828
+  xy: 110, 92
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 2
 number_score
   rotate: false
-  xy: 658, 630
+  xy: 684, 680
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 3
 number_score
   rotate: false
-  xy: 734, 680
+  xy: 608, 534
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 4
 number_score
   rotate: false
-  xy: 956, 922
+  xy: 254, 232
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 5
 number_score
   rotate: false
-  xy: 110, 106
+  xy: 206, 188
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 6
 number_score
   rotate: false
-  xy: 136, 152
+  xy: 326, 416
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 7
 number_score
   rotate: false
-  xy: 186, 206
+  xy: 718, 710
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
   index: 8
 number_score
   rotate: false
-  xy: 464, 416
+  xy: 516, 458
   size: 16, 20
   orig: 16, 20
   offset: 0, 0
@@ -440,7 +440,7 @@ pipe2_down
   index: -1
 pipe2_up
   rotate: false
-  xy: 2, 74
+  xy: 2, 82
   size: 52, 320
   orig: 52, 320
   offset: 0, 0
@@ -454,7 +454,7 @@ pipe_down
   index: -1
 pipe_up
   rotate: false
-  xy: 56, 74
+  xy: 56, 82
   size: 52, 320
   orig: 52, 320
   offset: 0, 0
@@ -468,7 +468,7 @@ score_panel
   index: -1
 text_game_over
   rotate: false
-  xy: 340, 454
+  xy: 292, 454
   size: 204, 54
   orig: 204, 54
   offset: 0, 0
@@ -482,7 +482,7 @@ text_ready
   index: -1
 title
   rotate: false
-  xy: 110, 346
+  xy: 110, 354
   size: 178, 48
   orig: 178, 48
   offset: 0, 0
@@ -496,7 +496,7 @@ tutorial
   index: -1
 white
   rotate: false
-  xy: 582, 522
+  xy: 290, 370
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

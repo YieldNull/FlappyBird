@@ -1,24 +1,23 @@
 package com.yieldnull.flappybird;
 
 import com.badlogic.gdx.Game;
-import com.yieldnull.flappybird.render.Renderer;
-import com.yieldnull.flappybird.screen.StartScreen;
+import com.yieldnull.flappybird.util.Assets;
+import com.yieldnull.flappybird.screen.GameScreen;
 
 public class FlappyBird extends Game {
 
-    private Renderer renderer;
-
     @Override
     public void create() {
-        renderer = new Renderer();
 
-        setScreen(new StartScreen(renderer));
+        Assets.load();
+        setScreen(new GameScreen());
     }
+
 
     @Override
     public void dispose() {
         super.dispose();
 
-        renderer.dispose();
+        Assets.dispose();
     }
 }
