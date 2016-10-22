@@ -40,8 +40,15 @@ public class Pipes extends Group {
 
     private final World world;
 
-    public Pipes(int zoneWidth, int zoneHeight, World world) {
+    public interface BirdThroughListener {
+        void birdThrough();
+    }
+
+    private BirdThroughListener birdThroughListener;
+
+    public Pipes(int zoneWidth, int zoneHeight, World world, BirdThroughListener birdThroughListener) {
         this.world = world;
+        this.birdThroughListener = birdThroughListener;
 
         this.totalHeight = zoneHeight;
 
@@ -67,6 +74,14 @@ public class Pipes extends Group {
 
     }
 
+    public float[] getXs() {
+        float[] xs = new float[pipes.length];
+        for (int i = 0; i < pipes.length; i++) {
+            xs[i] = pipes[i].x;
+        }
+        return xs;
+    }
+
     /**
      * A pair of pipe.
      */
@@ -87,6 +102,7 @@ public class Pipes extends Group {
         private final int maxHeight = (int) (PIP_HEIGHT / 1.3f);
         private final int minHeight = PIP_HEIGHT / 8;
 
+        private boolean birdThrough;
 
         Pipe(int index, float x) {
             this.x = x;
@@ -115,6 +131,11 @@ public class Pipes extends Group {
                         new Vector2(x, Assets.land.getHeight())), 0);
                 bodyTop.setTransform(Coordinate.mapSceneToWorld(
                         new Vector2(x, Assets.background.getHeight() - heightTop)), 0);
+
+                if (!birdThrough && x < Coordinate.bird.x) {
+                    birdThrough = true;
+                    birdThroughListener.birdThrough();
+                }
             }
 
             TextureRegion pipUp = new TextureRegion(Assets.pipeUp,
@@ -132,6 +153,8 @@ public class Pipes extends Group {
         }
 
         private void recycle() {
+            birdThrough = false;
+
             x = pipes[(index + pipes.length - 1) % pipes.length].x + GAP_HORIZONTAL;
             randomHeight();
 

@@ -29,7 +29,7 @@ import com.yieldnull.flappybird.util.Constants;
 /**
  * Created by yieldnull on 10/18/16.
  */
-public class GameScreen extends ScreenAdapter {
+public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListener {
 
     private final Stage stage;
     private final World world;
@@ -48,6 +48,9 @@ public class GameScreen extends ScreenAdapter {
     private Box2DDebugRenderer renderer = new Box2DDebugRenderer();
     private OrthographicCamera camera;
 
+    private final Score score;
+    private final Pipes pipes;
+
     public GameScreen() {
         Box2D.init();
         world = new World(new Vector2(0, -20f), true);
@@ -58,11 +61,12 @@ public class GameScreen extends ScreenAdapter {
                 stage.getViewport().getWorldHeight() / Constants.BOX2D_WORLD_RATIO);
 
         final Scene scene = new Scene(world);
-        final Pipes pipes = new Pipes((int) stage.getViewport().getWorldWidth(),
-                (int) (stage.getViewport().getWorldHeight() - Assets.land.getHeight()), world);
+        pipes = new Pipes((int) stage.getViewport().getWorldWidth(),
+                (int) (stage.getViewport().getWorldHeight() - Assets.land.getHeight()),
+                world,this);
         final Bird bird = new Bird(world);
         final Tutorial tutorial = new Tutorial();
-        final Score score = new Score();
+        score = new Score();
 
         stage.addActor(scene);
         stage.addActor(pipes);
@@ -151,6 +155,11 @@ public class GameScreen extends ScreenAdapter {
     }
 
     @Override
+    public void birdThrough() {
+        score.add();
+    }
+
+    @Override
     public void hide() {
         stage.dispose();
         world.dispose();
@@ -171,4 +180,6 @@ public class GameScreen extends ScreenAdapter {
     private void gameOver() {
         isGameOver = true;
     }
+
+
 }

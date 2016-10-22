@@ -22,12 +22,13 @@ public class Coordinate {
             tutorial.y + Assets.textReady.getHeight() + 50);
 
     public static final Vector2 textScore = new Vector2(
-            (Assets.background.getWidth() - Assets.scoreFont.get(0).getWidth()) / 2,
+            Assets.background.getWidth() / 2,
             textReady.y + Assets.scoreFont.get(0).getHeight() + 50);
 
 
     /**
      * when shape is set as box, the origin pointer is in the center
+     *
      * @param scenePos
      * @param size
      * @return

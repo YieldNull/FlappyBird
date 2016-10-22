@@ -81,7 +81,10 @@ public class Bird extends Actor {
             isFlying = true;
             birdAnimation.setFrameDuration(FLY_SPEED / 2);
         }
-        body.setLinearVelocity(0, 7f);
+
+        if (Coordinate.mapWorldToScene(body.getPosition()).y < Assets.background.getHeight()) {
+            body.setLinearVelocity(0, 7f);
+        }
     }
 
     public void hitLand() {
@@ -111,7 +114,8 @@ public class Bird extends Actor {
         }
 
         TextureRegion bird = birdAnimation.getKeyFrame(flyStateTime, true);
-        batch.draw(birdAnimation.getKeyFrame(flyStateTime, true), Coordinate.bird.x, birdY,
+        batch.draw(birdAnimation.getKeyFrame(flyStateTime, true),
+                Coordinate.bird.x, birdY,
                 getOriginX(), getOriginY(),
                 bird.getRegionWidth(), bird.getRegionHeight(),
                 1, 1,
