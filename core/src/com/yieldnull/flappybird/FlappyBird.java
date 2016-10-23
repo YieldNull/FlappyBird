@@ -1,8 +1,8 @@
 package com.yieldnull.flappybird;
 
 import com.badlogic.gdx.Game;
+import com.yieldnull.flappybird.screen.LauncherScreen;
 import com.yieldnull.flappybird.util.Assets;
-import com.yieldnull.flappybird.screen.GameScreen;
 
 public class FlappyBird extends Game {
 
@@ -10,9 +10,8 @@ public class FlappyBird extends Game {
     public void create() {
 
         Assets.load();
-        setScreen(new GameScreen());
+        setScreen(new LauncherScreen(this));
     }
-
 
     @Override
     public void dispose() {

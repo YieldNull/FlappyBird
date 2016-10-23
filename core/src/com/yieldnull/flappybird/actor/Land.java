@@ -7,23 +7,26 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.yieldnull.flappybird.util.Assets;
 import com.yieldnull.flappybird.util.Constants;
 import com.yieldnull.flappybird.util.Coordinate;
 
 /**
- * Game Scene
+ * Game Land
  * <p>
  * Created by yieldnull on 10/19/16.
  */
 
-public class Scene extends Actor {
+public class Land extends BaseActor {
 
     private int leftPartWidth;
     private boolean isMoving = true;
 
-    public Scene(World world) {
+    public Land() {
+
+    }
+
+    public Land(World world) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(Coordinate.mapSceneToWorld(new Vector2(0, 0), new Vector2(Assets.land.getWidth(), Assets.land.getHeight())));
@@ -36,12 +39,12 @@ public class Scene extends Actor {
         Body body = world.createBody(bodyDef);
         body.createFixture(shape, 0f);
 
-        body.setUserData(Scene.class);
+        body.setUserData(Land.class);
         shape.dispose();
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void draw(Batch batch) {
 
         if (isMoving) {
             leftPartWidth -= Constants.SCENE_MOVING_SPEED;
@@ -61,7 +64,6 @@ public class Scene extends Actor {
                 (int) (Assets.land.getWidth() - leftPartWidth),
                 (int) Assets.land.getHeight());
 
-        batch.draw(Assets.background, 0, 0);
         batch.draw(leftPart, 0, 0);
         batch.draw(rightPart, leftPartWidth, 0);
     }

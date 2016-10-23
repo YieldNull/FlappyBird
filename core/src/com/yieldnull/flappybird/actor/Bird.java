@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.yieldnull.flappybird.util.Assets;
 import com.yieldnull.flappybird.util.Coordinate;
 
@@ -20,7 +19,7 @@ import aurelienribon.bodyeditor.BodyEditorLoader;
  * Created by yieldnull on 10/19/16.
  */
 
-public class Bird extends Actor {
+public class Bird extends BaseActor {
 
     private static final float HOVER_HEIGHT = 3.2f;
     private static final float HOVER_STEP = 0.35f;
@@ -37,17 +36,27 @@ public class Bird extends Actor {
     private float rotation;
 
     private Animation birdAnimation;
-    private float birdY = Coordinate.bird.y;
+    private float birdY;
+    private Vector2 initPosition;
 
-    public Bird(World world) {
+    public Bird(Vector2 position) {
         birdAnimation = new Animation(FLY_SPEED, Assets.bird);
         setOrigin(21.5f, 24.5f);
+
+        birdY = position.y;
+
+        initPosition = position;
+    }
+
+    public Bird(Vector2 position, World world) {
+
+        this(position);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
 
-        bodyDef.position.set(Coordinate.mapSceneToWorld(new Vector2(Coordinate.bird.x + getOriginX(),
-                Coordinate.bird.y + getOriginY())));
+        bodyDef.position.set(Coordinate.mapSceneToWorld(new Vector2(initPosition.x + getOriginX(),
+                initPosition.y + getOriginY())));
 
         body = world.createBody(bodyDef);
         body.setUserData(Bird.class);
@@ -64,7 +73,7 @@ public class Bird extends Actor {
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void draw(Batch batch) {
         flyStateTime += Gdx.graphics.getDeltaTime();
 
         if (isFlying) {
@@ -84,16 +93,30 @@ public class Bird extends Actor {
 
         if (Coordinate.mapWorldToScene(body.getPosition()).y < Assets.background.getHeight()) {
             body.setLinearVelocity(0, 7f);
+
+            Assets.soundWing.play();
         }
     }
 
     public void hitLand() {
         isDropped = true;
         isFlying = false;
+
+        if (!soundPlayed) {
+            soundPlayed = true;
+            Assets.soundHit.play();
+        }
     }
 
-    public void hitPipe() {
+    private boolean soundPlayed;
 
+    public void hitPipe() {
+        if (!soundPlayed) {
+            soundPlayed = true;
+
+            Assets.soundDie.play();
+            Assets.soundHit.play();
+        }
     }
 
     public void destroyBody(World world) {
@@ -102,11 +125,11 @@ public class Bird extends Actor {
 
 
     private void renderHovering(Batch batch) {
-        if (!isHoveringUp && birdY >= Coordinate.bird.y - HOVER_HEIGHT) {
+        if (!isHoveringUp && birdY >= initPosition.y - HOVER_HEIGHT) {
             birdY -= HOVER_STEP;
         } else {
             isHoveringUp = true;
-            if (birdY <= Coordinate.bird.y + HOVER_HEIGHT) {
+            if (birdY <= initPosition.y + HOVER_HEIGHT) {
                 birdY += HOVER_STEP;
             } else {
                 isHoveringUp = false;
@@ -115,7 +138,7 @@ public class Bird extends Actor {
 
         TextureRegion bird = birdAnimation.getKeyFrame(flyStateTime, true);
         batch.draw(birdAnimation.getKeyFrame(flyStateTime, true),
-                Coordinate.bird.x, birdY,
+                initPosition.x, birdY,
                 getOriginX(), getOriginY(),
                 bird.getRegionWidth(), bird.getRegionHeight(),
                 1, 1,

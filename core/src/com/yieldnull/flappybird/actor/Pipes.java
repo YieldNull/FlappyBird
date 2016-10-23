@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.yieldnull.flappybird.util.Assets;
 import com.yieldnull.flappybird.util.Constants;
@@ -85,7 +84,7 @@ public class Pipes extends Group {
     /**
      * A pair of pipe.
      */
-    private class Pipe extends Actor {
+    private class Pipe extends BaseActor {
 
         private int heightBottom;
         private int heightTop;
@@ -119,7 +118,7 @@ public class Pipes extends Group {
 
 
         @Override
-        public void draw(Batch batch, float parentAlpha) {
+        public void draw(Batch batch) {
             if (isMoving) {
                 x -= Constants.SCENE_MOVING_SPEED;
 

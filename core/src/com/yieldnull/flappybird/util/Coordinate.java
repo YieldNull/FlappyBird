@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Coordinate {
 
     public static final Vector2 bird = new Vector2(
-            (int) ((Assets.background.getWidth() - Assets.bird.get(0).getWidth()) / 4 + 10),
-            (int) (Assets.background.getHeight() / 2) - 30);
+            ((Assets.background.getWidth() - Assets.bird.get(0).getWidth()) / 4 + 10),
+            (Assets.background.getHeight() / 2) - 30);
 
     public static final Vector2 tutorial = new Vector2(
             (Assets.background.getWidth() - Assets.tutorial.getWidth()) / 2,
@@ -25,6 +25,43 @@ public class Coordinate {
             Assets.background.getWidth() / 2,
             textReady.y + Assets.scoreFont.get(0).getHeight() + 50);
 
+
+    public static final Vector2 buttonPlay = new Vector2(
+            (Assets.background.getWidth() - Assets.buttonScore.getWidth() - Assets.buttonPlay.getWidth()) / 3,
+            Assets.land.getHeight() - 10f);
+
+    public static final Vector2 buttonScore = new Vector2(
+            buttonPlay.x * 2 + Assets.buttonPlay.getWidth(),
+            buttonPlay.y);
+
+    public static final Vector2 scorePanel = new Vector2(
+            (Assets.background.getWidth() - Assets.scorePanel.getWidth()) / 2,
+            (Assets.background.getHeight() - Assets.scorePanel.getHeight()) / 2);
+
+
+    public static final Vector2 textOver = new Vector2(
+            (Assets.background.getWidth() - Assets.textOver.getWidth()) / 2,
+            scorePanel.y + Assets.scorePanel.getHeight()
+                    + scorePanel.y - (buttonPlay.y + Assets.buttonPlay.getHeight()));
+
+
+    public static final Vector2 birdCenter = new Vector2(
+            ((Assets.background.getWidth() - Assets.bird.get(0).getWidth()) / 2),
+            (Assets.background.getHeight() - Assets.bird.get(0).getHeight()) / 2);
+
+
+    public static final Vector2 title = new Vector2(
+            (Assets.background.getWidth() - Assets.title.getWidth()) / 2,
+            birdCenter.y + Assets.bird.get(0).getHeight()
+                    + birdCenter.y - (buttonPlay.y + Assets.buttonPlay.getHeight()));
+
+
+    public static final Vector2 medal = new Vector2(scorePanel.x + 32, scorePanel.y + 38);
+
+
+    public static final Vector2 scoreSum = new Vector2(scorePanel.x + 209, scorePanel.y + 71);
+
+    public static final Vector2 scoreMax = new Vector2(scorePanel.x + 209, scorePanel.y + 29);
 
     /**
      * when shape is set as box, the origin pointer is in the center
