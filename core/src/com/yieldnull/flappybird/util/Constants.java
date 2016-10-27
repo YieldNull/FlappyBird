@@ -11,13 +11,4 @@ public class Constants {
 
     public static final float WORLD_WIDTH = Assets.background.getWidth();
     public static final float WORLD_HEIGHT = Assets.background.getHeight();
-
-    public static final float LAND_HEIGHT = Assets.land.getWidth();
-
-    public static final float BIRD_WIDTH = Assets.bird.get(0).getWidth();
-    public static final float BIRD_HEIGHT = Assets.bird.get(0).getHeight();
-
-    public static final float TUTORIAL_WIDTH = Assets.tutorial.getWidth();
-    public static final float TUTORIAL_HEIGHT = Assets.tutorial.getHeight();
-
 }

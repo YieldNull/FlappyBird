@@ -46,6 +46,7 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
     private boolean isGameOver;
     private boolean isBirdDropped;
 
+    // for box2d step time
     private static final float STEP_TIME = 1f / 60f;
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITION_ITERATIONS = 2;
@@ -53,6 +54,7 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
     private float accumulator = 0;
 
 
+    // for box2d debug render
     private Box2DDebugRenderer renderer = new Box2DDebugRenderer();
     private OrthographicCamera camera;
 
@@ -68,17 +70,16 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
         Box2D.init();
         world = new World(new Vector2(0, -20f), true);
 
-        stage = new Stage(new StretchViewport(Assets.background.getWidth(), Assets.background.getHeight()));
+        stage = new Stage(new StretchViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT));
         Gdx.input.setInputProcessor(stage);
 
-        camera = new OrthographicCamera(stage.getViewport().getWorldWidth() / Constants.BOX2D_WORLD_RATIO,
-                stage.getViewport().getWorldHeight() / Constants.BOX2D_WORLD_RATIO);
+        camera = new OrthographicCamera(Constants.WORLD_WIDTH / Constants.BOX2D_WORLD_RATIO,
+                Constants.WORLD_HEIGHT / Constants.BOX2D_WORLD_RATIO);
 
 
         score = new Score(Assets.scoreFont, Coordinate.textScore, true);
-        pipes = new Pipes((int) stage.getViewport().getWorldWidth(),
-                (int) (stage.getViewport().getWorldHeight() - Assets.land.getHeight()),
-                world, this);
+        pipes = new Pipes(world, this);
+
         final Bird bird = new Bird(Coordinate.bird, world);
         final Land land = new Land(world);
 
@@ -94,7 +95,7 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
         BaseActor blackScreen = new BaseActor() {
             @Override
             public void draw(Batch batch) {
-                batch.draw(Assets.black, 0, 0, Assets.background.getWidth(), Assets.background.getHeight());
+                batch.draw(Assets.black, 0, 0, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             }
         };
 
@@ -230,7 +231,7 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
         Actor flash = new BaseActor() {
             @Override
             public void draw(Batch batch) {
-                batch.draw(Assets.white, 0, 0, Assets.background.getWidth(), Assets.background.getHeight());
+                batch.draw(Assets.white, 0, 0, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
             }
         };
         stage.addActor(flash);
@@ -244,15 +245,15 @@ public class GameScreen extends ScreenAdapter implements Pipes.BirdThroughListen
         };
 
 
-        final Score currentScore = new Score(Assets.scoreNumbers, Coordinate.scoreSum, false);
-        Score maxScore = new Score(Assets.scoreNumbers, Coordinate.scoreMax, false);
+        final Score currentScore = new Score(Assets.scorePanelNums, Coordinate.scoreSum, false);
+        Score maxScore = new Score(Assets.scorePanelNums, Coordinate.scoreMax, false);
 
         int max = History.getMax();
         maxScore.setScore(max >= 0 ? max : score.getScore());
 
         Actor scorePanel = new BaseActor() {
 
-            private int rank=History.rank(score.getScore());
+            private int rank = History.rank(score.getScore());
 
             @Override
             public void draw(Batch batch) {

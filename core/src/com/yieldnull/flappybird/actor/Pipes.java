@@ -23,36 +23,39 @@ public class Pipes extends Group {
     private static final int PIP_WIDTH = (int) Assets.pipeUp.getWidth();
     private static final int PIP_HEIGHT = (int) Assets.pipeUp.getHeight();
 
-    private static final int GAP_VERTICAL = 104;
-    private static final int GAP_HORIZONTAL = 160;
-
+    private static final int BOTTOM_Y = (int) Assets.land.getHeight();
 
     private static final int HEAD_HEIGHT = 24;
     private static final int BODY_WIDTH = 48;
 
+    private static final int GAP_VERTICAL = 104;
+    private static final int GAP_HORIZONTAL = 160;
 
-    private final int totalHeight;
-
-    private final Pipe[] pipes = new Pipe[3];
-
-    private boolean isMoving;
 
     private final World world;
+    private final Pipe[] pipes = new Pipe[3];
 
+    private final int totalHeight;
+    private boolean isMoving;
+
+
+    /**
+     * The bird has flied through a pip group.
+     */
     public interface BirdThroughListener {
         void birdThrough();
     }
 
     private BirdThroughListener birdThroughListener;
 
-    public Pipes(int zoneWidth, int zoneHeight, World world, BirdThroughListener birdThroughListener) {
+    public Pipes(World world, BirdThroughListener birdThroughListener) {
         this.world = world;
         this.birdThroughListener = birdThroughListener;
 
-        this.totalHeight = zoneHeight;
+        this.totalHeight = (int) (Constants.WORLD_HEIGHT - BOTTOM_Y);
 
         for (int i = 0; i < pipes.length; i++) {
-            Pipe pipe = new Pipe(i, 2 * zoneWidth + (i + 1) * GAP_HORIZONTAL);
+            Pipe pipe = new Pipe(i, 2 * Constants.WORLD_WIDTH + (i + 1) * GAP_HORIZONTAL);
             pipes[i] = pipe;
             addActor(pipe);
         }
@@ -66,20 +69,6 @@ public class Pipes extends Group {
         isMoving = false;
     }
 
-
-    @Override
-    protected void drawChildren(Batch batch, float parentAlpha) {
-        super.drawChildren(batch, parentAlpha);
-
-    }
-
-    public float[] getXs() {
-        float[] xs = new float[pipes.length];
-        for (int i = 0; i < pipes.length; i++) {
-            xs[i] = pipes[i].x;
-        }
-        return xs;
-    }
 
     /**
      * A pair of pipe.
@@ -109,10 +98,10 @@ public class Pipes extends Group {
 
             randomHeight();
 
-            bodyBottom = createBody(new Vector2(x, Assets.land.getHeight()),
+            bodyBottom = createBody(new Vector2(x, BOTTOM_Y),
                     new Vector2(PIP_WIDTH, heightBottom), true);
 
-            bodyTop = createBody(new Vector2(x, Assets.background.getHeight() - heightTop),
+            bodyTop = createBody(new Vector2(x, Constants.WORLD_HEIGHT - heightTop),
                     new Vector2(PIP_WIDTH, heightTop), false);
         }
 
@@ -127,9 +116,9 @@ public class Pipes extends Group {
                 }
 
                 bodyBottom.setTransform(Coordinate.mapSceneToWorld(
-                        new Vector2(x, Assets.land.getHeight())), 0);
+                        new Vector2(x, BOTTOM_Y)), 0);
                 bodyTop.setTransform(Coordinate.mapSceneToWorld(
-                        new Vector2(x, Assets.background.getHeight() - heightTop)), 0);
+                        new Vector2(x, Constants.WORLD_HEIGHT - heightTop)), 0);
 
                 if (!birdThrough && x < Coordinate.bird.x) {
                     birdThrough = true;
@@ -143,9 +132,10 @@ public class Pipes extends Group {
             TextureRegion pipDown = new TextureRegion(Assets.pipeDown,
                     0, PIP_HEIGHT - heightTop, PIP_WIDTH, heightTop);
 
-            batch.draw(pipUp, x, Assets.land.getHeight());
-            batch.draw(pipDown, x, Assets.background.getHeight() - heightTop);
+            batch.draw(pipUp, x, BOTTOM_Y);
+            batch.draw(pipDown, x, Constants.WORLD_HEIGHT - heightTop);
         }
+
 
         private boolean visible() {
             return x > -getWidthInScreen();
@@ -182,7 +172,6 @@ public class Pipes extends Group {
 
             createFixture(body, (int) size.y, isUp);
 
-
             body.setUserData(Pipes.class);
 
             return body;
@@ -197,7 +186,7 @@ public class Pipes extends Group {
             PolygonShape bottomShape = new PolygonShape();
             PolygonShape topShape = new PolygonShape();
 
-
+            // 8 vertices
             Vector2[] bottomVertices = new Vector2[4];
             Vector2[] topVertices = new Vector2[4];
 
@@ -228,8 +217,8 @@ public class Pipes extends Group {
             }
 
 
-            Coordinate.sceneToWorld(bottomVertices);
-            Coordinate.sceneToWorld(topVertices);
+            sceneToWorld(bottomVertices);
+            sceneToWorld(topVertices);
 
             bottomShape.set(bottomVertices);
             topShape.set(topVertices);
@@ -240,6 +229,13 @@ public class Pipes extends Group {
 
             bottomShape.dispose();
             topShape.dispose();
+        }
+    }
+
+    private static void sceneToWorld(Vector2[] vertices) {
+        for (Vector2 v : vertices) {
+            v.x /= (float) Constants.BOX2D_WORLD_RATIO;
+            v.y /= (float) Constants.BOX2D_WORLD_RATIO;
         }
     }
 }

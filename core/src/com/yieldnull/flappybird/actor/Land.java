@@ -22,10 +22,18 @@ public class Land extends BaseActor {
     private int leftPartWidth;
     private boolean isMoving = true;
 
-    public Land() {
 
+    /**
+     * draw a land.
+     */
+    public Land() {
     }
 
+    /**
+     * draw a land with the corresponding Body in Box2d World
+     *
+     * @param world Box2d World
+     */
     public Land(World world) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
@@ -50,7 +58,7 @@ public class Land extends BaseActor {
             leftPartWidth -= Constants.SCENE_MOVING_SPEED;
 
             if (leftPartWidth <= 0) {
-                leftPartWidth += Assets.background.getWidth();
+                leftPartWidth += Constants.WORLD_WIDTH;
             }
         }
 

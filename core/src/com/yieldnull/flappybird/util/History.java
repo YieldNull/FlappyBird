@@ -19,6 +19,12 @@ public class History {
 
     private static final String FILE_NAME = "scores";
 
+    /**
+     * Get rank in history and store it.
+     *
+     * @param score
+     * @return
+     */
     public static int rank(int score) {
 
         List<Integer> records = readRecords();
@@ -29,6 +35,11 @@ public class History {
         return records.indexOf(score);
     }
 
+    /**
+     * Get the max score in history.
+     *
+     * @return
+     */
     public static int getMax() {
         List<Integer> records = readRecords();
         Collections.sort(records, Collections.<Integer>reverseOrder());

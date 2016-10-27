@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.yieldnull.flappybird.actor.BaseActor;
 import com.yieldnull.flappybird.actor.Launcher;
 import com.yieldnull.flappybird.util.Assets;
+import com.yieldnull.flappybird.util.Constants;
 
 /**
  * Created by yieldnull on 10/23/16.
@@ -32,7 +33,7 @@ public class LauncherClickedListener implements Launcher.ButtonOnClickedListener
             BaseActor blackScreen = new BaseActor() {
                 @Override
                 public void draw(Batch batch) {
-                    batch.draw(Assets.black, 0, 0, Assets.background.getWidth(), Assets.background.getHeight());
+                    batch.draw(Assets.black, 0, 0, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
                 }
             };
 

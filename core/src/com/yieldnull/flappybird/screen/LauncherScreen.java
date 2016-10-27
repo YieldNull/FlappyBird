@@ -12,6 +12,7 @@ import com.yieldnull.flappybird.actor.Bird;
 import com.yieldnull.flappybird.actor.Land;
 import com.yieldnull.flappybird.actor.Launcher;
 import com.yieldnull.flappybird.util.Assets;
+import com.yieldnull.flappybird.util.Constants;
 import com.yieldnull.flappybird.util.Coordinate;
 
 /**
@@ -24,7 +25,7 @@ public class LauncherScreen extends ScreenAdapter {
 
     public LauncherScreen(Game game) {
 
-        stage = new Stage(new StretchViewport(Assets.background.getWidth(), Assets.background.getHeight()));
+        stage = new Stage(new StretchViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT));
         Gdx.input.setInputProcessor(stage);
 
 

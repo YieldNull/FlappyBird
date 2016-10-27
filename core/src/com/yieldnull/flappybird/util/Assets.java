@@ -41,7 +41,7 @@ public class Assets {
 
 
     public static Array<Sprite> medals;
-    public static Array<Sprite> scoreNumbers;
+    public static Array<Sprite> scorePanelNums;
 
     public static Sound soundDie;
     public static Sound soundHit;
@@ -90,7 +90,7 @@ public class Assets {
 
 
         medals = atlas.createSprites("medals");
-        scoreNumbers = atlas.createSprites("number_score");
+        scorePanelNums = atlas.createSprites("number_score");
 
         soundDie = Gdx.audio.newSound(Gdx.files.internal("sounds/sfx_die.ogg"));
         soundHit = Gdx.audio.newSound(Gdx.files.internal("sounds/sfx_hit.ogg"));

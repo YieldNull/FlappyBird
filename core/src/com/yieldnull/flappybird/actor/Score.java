@@ -4,18 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.compression.lzma.Base;
-import com.yieldnull.flappybird.actor.BaseActor;
-import com.yieldnull.flappybird.util.Assets;
-import com.yieldnull.flappybird.util.Coordinate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
+ * Draw score.
+ * <p>
  * Created by yieldnull on 10/19/16.
  */
 
@@ -23,13 +19,20 @@ public class Score extends BaseActor {
 
     private int score;
 
-    private Array<Sprite> numberSet;
+    private Array<Sprite> fontSet;
     private Vector2 position;
 
     private boolean isCenter;
 
-    public Score(Array<Sprite> numberSet, Vector2 position, boolean isCenter) {
-        this.numberSet = numberSet;
+    /**
+     * draw score with font set at position. align to center or right
+     *
+     * @param fontSet  font set to draw digits
+     * @param position the center position or rightmost position
+     * @param isCenter align to center or right.
+     */
+    public Score(Array<Sprite> fontSet, Vector2 position, boolean isCenter) {
+        this.fontSet = fontSet;
         this.position = position;
         this.isCenter = isCenter;
     }
@@ -44,7 +47,7 @@ public class Score extends BaseActor {
         do {
             digit = num % 10;
 
-            TextureRegion region = numberSet.get(digit);
+            TextureRegion region = fontSet.get(digit);
             regions.add(region);
             totalWidth += region.getRegionWidth();
 
